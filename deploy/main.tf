@@ -50,3 +50,15 @@ resource "aws_ecs_task_definition" "python-ast-explorer-service" {
 resource "aws_ecs_cluster" "python-ast-explorer-cluster" {
   name = "python-ast-explorer"
 }
+
+resource "aws_ecs_service" "python-ast-explorer-service" {
+  name            = "python-ast-explorer"
+  cluster         = aws_ecs_cluster.python-ast-explorer-cluster.id
+  task_definition = aws_ecs_task_definition.python-ast-explorer-service.arn
+  desired_count   = 1
+
+  placement_constraints {
+    type       = "memberOf"
+    expression = "attribute:ecs.availability-zone in [us-east-2a]"
+  }
+}
