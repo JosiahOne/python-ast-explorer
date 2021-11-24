@@ -46,3 +46,7 @@ resource "aws_ecs_task_definition" "python-ast-explorer-service" {
     expression = "attribute:ecs.availability-zone in [us-east-2a]"
   }
 }
+
+resource "aws_ecs_cluster" "python-ast-explorer-cluster" {
+  name = "python-ast-explorer"
+}
