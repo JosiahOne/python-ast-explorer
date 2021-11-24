@@ -7,7 +7,7 @@ RUN apk update && apk add g++ make nodejs npm python3  py3-pip
 
 RUN python3 -m pip install -r requirements.txt
 WORKDIR /opt/pyast/front
-RUN npm install
+RUN npm ci
 RUN npm run build
 WORKDIR /opt/pyast
 
